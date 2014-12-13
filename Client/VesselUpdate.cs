@@ -16,7 +16,7 @@ namespace DarkMultiPlayer
         //Orbital parameters
         public double[] orbit;
         //Surface parameters
-        //Position = lat,long,alt.
+        //Position = lat,long,alt,ground height.
         public double[] position;
         public double[] velocity;
         public double[] acceleration;
@@ -54,10 +54,11 @@ namespace DarkMultiPlayer
                 {
                     //Use surface position under 10k
                     returnUpdate.isSurfaceUpdate = true;
-                    returnUpdate.position = new double[3];
+                    returnUpdate.position = new double[4];
                     returnUpdate.position[0] = updateVessel.latitude;
                     returnUpdate.position[1] = updateVessel.longitude;
                     returnUpdate.position[2] = updateVessel.altitude;
+                    returnUpdate.position[3] = VesselUtil.FindGroundHeightAtAltitude(updateVessel.latitude, updateVessel.longitude, updateVessel.mainBody);
                     returnUpdate.velocity = new double[3];
                     Vector3d srfVel = Quaternion.Inverse(updateVessel.mainBody.bodyTransform.rotation) * updateVessel.srf_velocity;
                     returnUpdate.velocity[0] = srfVel.x;
@@ -132,14 +133,22 @@ namespace DarkMultiPlayer
             if (isSurfaceUpdate)
             {
                 //Get the new position/velocity
-                Vector3d updatePostion = updateBody.GetWorldSurfacePosition(position[0], position[1], position[2]);
+                double altitudeFudge = 0;
+                double ourGround = VesselUtil.FindGroundHeightAtAltitude(position[0], position[1], updateBody);
+                if (ourGround != -1d && position[3] != -1d)
+                {
+                    altitudeFudge = ourGround - position[3];
+                    DarkLog.Debug("Fudging altitude: " + altitudeFudge);
+                    DarkLog.Debug("Theirs: " + Math.Round(position[3], 3) + ", ours:" + Math.Round(ourGround, 3));
+                }
+                Vector3d updatePostion = updateBody.GetWorldSurfacePosition(position[0], position[1], position[2] + altitudeFudge);
                 Vector3d updateVelocity = updateBody.bodyTransform.rotation * new Vector3d(velocity[0], velocity[1], velocity[2]);
                 Vector3d updateAcceleration = updateBody.bodyTransform.rotation * new Vector3d(acceleration[0], acceleration[1], acceleration[2]);
                 if (updateVessel.packed)
                 {
                     updateVessel.latitude = position[0];
                     updateVessel.longitude = position[1];
-                    updateVessel.altitude = position[2];
+                    updateVessel.altitude = position[2] + altitudeFudge;
                     updateVessel.protoVessel.latitude = updateVessel.latitude;
                     updateVessel.protoVessel.longitude = updateVessel.longitude;
                     updateVessel.protoVessel.altitude = updateVessel.altitude;
