@@ -236,7 +236,7 @@ namespace DarkMultiPlayer {
 				if (int.TryParse(newSizeStr, out newSize)) {
 					if (newSize < 1) {
 						newSize = 1;
-					} else if (newSize < 1000000) {
+					} else if (newSize > 1000000) {
 						newSize = 1000000;
 					}
 				} else {
@@ -245,7 +245,7 @@ namespace DarkMultiPlayer {
 			}
 			
 			if (newSize != Settings.fetch.cacheSize) {
-				Settings.fetch.cacheSize = newSize / 1024;
+				Settings.fetch.cacheSize = newSize * 1024;
 				Settings.fetch.SaveSettings();
 			}
 			groupY += 22;
