@@ -1120,7 +1120,7 @@ namespace DarkMultiPlayer
         {
             if (crewNode != null)
             {
-				ProtoCrewMember protoCrew = new ProtoCrewMember(crewNode, ProtoCrewMember.KerbalType.Crew);
+                ProtoCrewMember protoCrew = new ProtoCrewMember(crewNode, ProtoCrewMember.KerbalType.Crew);
                 if (protoCrew != null)
                 {
                     if (!String.IsNullOrEmpty(protoCrew.name))
