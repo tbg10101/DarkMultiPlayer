@@ -230,7 +230,7 @@ namespace DarkMultiPlayer
                 {
                     PlayerStatusWindow.fetch.disconnectEventHandled = true;
                     forceQuit = true;
-                    NetworkWorker.fetch.SendDisconnect("Quit");
+					NetworkWorker.fetch.SendDisconnect("Quit");
                 }
                 if (!ConnectionWindow.fetch.renameEventHandled)
                 {

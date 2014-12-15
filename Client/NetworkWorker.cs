@@ -1845,7 +1845,7 @@ namespace DarkMultiPlayer
             QueueOutgoingMessage(newMessage, highPriority);
         }
         //Called from main
-        public void SendDisconnect(string disconnectReason = "Unknown")
+        public void SendDisconnect(string disconnectReason)
         {
             if (state != ClientState.DISCONNECTING && state >= ClientState.CONNECTED)
             {
