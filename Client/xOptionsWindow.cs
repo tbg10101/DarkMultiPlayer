@@ -5,7 +5,7 @@ namespace DarkMultiPlayer {
 	public class xOptionsWindow {
 		public static xOptionsWindow instance;
 		
-		private static Rect windowRect = new Rect (Screen.width / 2f + 300 / 2f, Screen.height / 2f - 519 / 2f, 300, 541);
+		private static Rect windowRect = new Rect (Screen.width / 2f + 300 / 2f, Screen.height / 2f - 543 / 2f, 300, 543);
 		private int descWidth = 75;
 		private int sepWidth = 5;
 		
@@ -154,7 +154,7 @@ namespace DarkMultiPlayer {
 			
 			windowY += 20 + 2;
 			
-			GUI.BeginGroup(new Rect(10, windowY, windowRect.width - 20, 92));
+			GUI.BeginGroup(new Rect(10, windowY, windowRect.width - 20, 90));
 			groupY = 0;
 			
 			//Info
@@ -207,7 +207,7 @@ namespace DarkMultiPlayer {
 			}
 			
 			GUI.EndGroup();
-			windowY += 88 + 5;
+			windowY += 90 + 5;
 			
 			//Cache Size
 			GUI.DragWindow(new Rect(0, windowY, windowRect.width, 20));
@@ -296,7 +296,7 @@ namespace DarkMultiPlayer {
 			GUI.BeginGroup(new Rect(10, windowY, windowRect.width - 20, 64));
 			groupY = 0;
 			
-			bool newCompress = GUI.Toggle(new Rect(0, groupY, windowRect.width - 20, 20), Settings.fetch.compressionEnabled, "Compress Network Traffic");
+			bool newCompress = GUI.Toggle(new Rect(0, groupY, windowRect.width - 20, 20), Settings.fetch.compressionEnabled, " Compress Network Traffic");
 			if (newCompress != Settings.fetch.compressionEnabled) {
 				Settings.fetch.compressionEnabled = newCompress;
 				Settings.fetch.SaveSettings();
