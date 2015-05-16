@@ -118,15 +118,6 @@ namespace DarkMultiPlayer
             GUI.DragWindow(moveRect);
             GUILayout.Space(20);
             GUILayout.BeginHorizontal();
-            GUILayout.Label("Player name:", labelOptions);
-            string oldPlayerName = Settings.fetch.playerName;
-            Settings.fetch.playerName = GUILayout.TextArea(Settings.fetch.playerName, 32, textAreaStyle); // Max 32 characters
-            if (oldPlayerName != Settings.fetch.playerName)
-            {
-                renameEventHandled = false;
-            }
-            GUILayout.EndHorizontal();
-            GUILayout.BeginHorizontal();
             //Draw add button
             string addMode = selectedSafe == -1 ? "Add" : "Edit";
             string buttonAddMode = addMode;
@@ -171,7 +162,9 @@ namespace DarkMultiPlayer
                 }
             }
             GUI.enabled = true;
-            OptionsWindow.fetch.display = GUILayout.Toggle(OptionsWindow.fetch.display, "Options", buttonStyle);
+			if (GUILayout.Button("Options", buttonStyle)) {
+				xOptionsWindow.show();
+			}
             GUILayout.EndHorizontal();
             if (addingServerSafe)
             {

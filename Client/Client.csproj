@@ -12,32 +12,31 @@
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
+    <DebugSymbols>True</DebugSymbols>
     <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
+    <Optimize>False</Optimize>
     <OutputPath>bin\Debug</OutputPath>
     <DefineConstants>DEBUG;</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <ConsolePause>false</ConsolePause>
+    <ConsolePause>False</ConsolePause>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <Optimize>true</Optimize>
+    <Optimize>True</Optimize>
     <OutputPath>bin\Release</OutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <ConsolePause>false</ConsolePause>
+    <ConsolePause>False</ConsolePause>
+    <DebugType>none</DebugType>
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="Assembly-CSharp">
       <HintPath>..\Assembly-CSharp.dll</HintPath>
-      <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine">
       <HintPath>..\UnityEngine.dll</HintPath>
-      <Private>False</Private>
     </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="MessageWriter2">
@@ -90,6 +89,7 @@
     <Compile Include="3DDebug.cs" />
     <Compile Include="HackyInAtmoLoader.cs" />
     <Compile Include="PartKiller.cs" />
+    <Compile Include="xOptionsWindow.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Common\DarkMultiPlayerCommon.csproj">
