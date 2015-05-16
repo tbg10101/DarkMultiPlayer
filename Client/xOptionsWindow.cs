@@ -5,7 +5,7 @@ namespace DarkMultiPlayer {
 	public class xOptionsWindow {
 		public static xOptionsWindow instance;
 		
-		private static Rect windowRect = new Rect (Screen.width / 2f + 300 / 2f, Screen.height / 2f - 543 / 2f, 300, 543);
+		private static Rect windowRect = new Rect (Screen.width / 2.0f + 300.0f / 2.0f, Screen.height / 2.0f - 543.0f / 2.0f, 300.0f, 543.0f);
 		private int descWidth = 75;
 		private int sepWidth = 5;
 		

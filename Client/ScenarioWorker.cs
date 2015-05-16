@@ -305,7 +305,7 @@ namespace DarkMultiPlayer
                 string nodeName = scenarioEntry.scenarioName;
                 ScreenMessages.PostScreenMessage(nodeName + " is badly behaved!");
                 DarkLog.Debug(nodeName + " is badly behaved!");
-                scenarioEntry.scenarioNode.SetValue("scene", "7, 8, 5, 6, 9");
+                scenarioEntry.scenarioNode.SetValue("scene", "7, 8, 5, 6, 9", false);
             }
         }
 

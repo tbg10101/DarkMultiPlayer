@@ -1135,7 +1135,7 @@ namespace DarkMultiPlayer
         {
             if (crewNode != null)
             {
-                ProtoCrewMember protoCrew = new ProtoCrewMember(HighLogic.CurrentGame.Mode, crewNode);
+				ProtoCrewMember protoCrew = new ProtoCrewMember(HighLogic.CurrentGame.Mode, crewNode, (ProtoCrewMember.KerbalType)0);
                 if (protoCrew != null)
                 {
                     if (!String.IsNullOrEmpty(protoCrew.name))
@@ -1505,7 +1505,7 @@ namespace DarkMultiPlayer
                         if (valueCurrent != valueDodge)
                         {
                             DarkLog.Debug("Dodged actiongroup " + keyName);
-                            actiongroupNode.SetValue(keyName, valueDodge);
+                            actiongroupNode.SetValue(keyName, valueDodge, false);
                         }
                     }
                 }
@@ -1520,12 +1520,12 @@ namespace DarkMultiPlayer
                 switch (situation)
                 {
                     case "LANDED":
-                        vesselNode.SetValue("landed", "True");
-                        vesselNode.SetValue("splashed", "False");
+                        vesselNode.SetValue("landed", "True", false);
+					vesselNode.SetValue("splashed", "False", false);
                         break;
                     case "SPLASHED":
-                        vesselNode.SetValue("splashed", "True");
-                        vesselNode.SetValue("landed", "False");
+					vesselNode.SetValue("splashed", "True", false);
+					vesselNode.SetValue("landed", "False", false);
                         break;
                 }
             }
@@ -1577,7 +1577,7 @@ namespace DarkMultiPlayer
                         pcm.rosterStatus = ProtoCrewMember.RosterStatus.Assigned;
                         pcm.seatIdx = crewIndex;
                         AddCrewMemberToRoster(pcm);
-                        partNode.SetValue("crew", pcm.name, crewIndex);
+                        partNode.SetValue("crew", pcm.name, crewIndex, false);
                         DarkLog.Debug("Created kerbal " + pcm.name + " for crew index " + configNodeValue + " for vessel " + vesselID + ", Updated vessel to 0.24");
                         assignName = pcm.name;
                         dodged = true;
@@ -1607,7 +1607,7 @@ namespace DarkMultiPlayer
                             }
                             freeKerbal.rosterStatus = ProtoCrewMember.RosterStatus.Assigned;
                             freeKerbal.seatIdx = crewIndex;
-                            partNode.SetValue("crew", freeKerbal.name, crewIndex);
+                            partNode.SetValue("crew", freeKerbal.name, crewIndex, false);
                             assignName = freeKerbal.name;
                             dodged = true;
                         }
